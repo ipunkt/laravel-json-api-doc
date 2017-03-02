@@ -4,7 +4,7 @@
 @unless($resource->itemRoutes()->isEmpty())
 Existing calls:
 @foreach ($resource->itemRoutes() as $route)
-- Item call: <xmp>{{ $route->path() }}</xmp>
+- Item call: <xmp>{{ urldecode($route->path()) }}</xmp>
 @endforeach
 @foreach($resource->getRelations() as $relation)
 - Relation for <kbd>{{ $relation->getName() }}: {{ $relation->getComment() }}</kbd> <xmp>{{ $resource->itemRoutes()->first()->path() }}/relationships/{{ $relation->getName() }}</xmp>
