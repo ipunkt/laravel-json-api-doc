@@ -14,7 +14,12 @@
 			"Ipunkt\\LaravelJsonApiDoc\\": "src/"
 		}
 	},
-	"require": {},
+	"require": {
+		"php": ">=7.0",
+		"laravel/framework": "^5.2",
+        "illuminate/support": "^5.2",
+		"ipunkt/laravel-json-api": "dev-master"
+	},
 	"bin": [
 		"scripts/api-documentation"
 	]
