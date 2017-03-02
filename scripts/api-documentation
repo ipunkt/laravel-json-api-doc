@@ -22,6 +22,7 @@ for C in $STORAGE/blueprints/*
 do
 	NAME=$(basename $C .apbi)
 	TARGET="docs/$NAME.html"
-	echo "Erzeuge $TARGET aus $C"
+	echo "Transforming $STORAGE/blueprints/$TARGET from $C"
+	mkdir -p `dirname "$STORAGE/$TARGET"`
 	docker run -u $uid:$gid --rm $INTERACTIVE -v $script_dir:$container_dir humangeo/aglio -i "$C" -o "$STORAGE/$TARGET" --theme-variables default --theme-template triple
 done
