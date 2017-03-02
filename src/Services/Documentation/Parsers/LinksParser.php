@@ -3,6 +3,7 @@
 namespace Ipunkt\LaravelJsonApiDoc\Services\Documentation\Parsers;
 
 use Ipunkt\LaravelJsonApi\Resources\ResourceManager;
+use Ipunkt\LaravelJsonApi\Resources\ResourceNotDefinedException;
 use Ipunkt\LaravelJsonApiDoc\Services\Documentation\Link;
 use Ipunkt\LaravelJsonApiDoc\Services\Documentation\ResourceDocumentation;
 
@@ -24,7 +25,12 @@ class LinksParser extends BaseParser
         ResourceDocumentation $resourceDocumentation
     )
     {
-        $classDocblock = $this->getSerializerDocBlock($resourceManager, $resourceName);
+        try {
+            $classDocblock = $this->getSerializerDocBlock($resourceManager, $resourceName);
+        } catch (ResourceNotDefinedException $exception)
+        {
+            return;
+        }
 
         $linkLines = $this->docblockParser->findTags('link', $classDocblock);
 

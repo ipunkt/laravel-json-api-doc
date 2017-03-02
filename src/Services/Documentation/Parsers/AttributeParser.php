@@ -3,6 +3,7 @@
 namespace Ipunkt\LaravelJsonApiDoc\Services\Documentation\Parsers;
 
 use Ipunkt\LaravelJsonApi\Resources\ResourceManager;
+use Ipunkt\LaravelJsonApi\Resources\ResourceNotDefinedException;
 use Ipunkt\LaravelJsonApiDoc\Services\Documentation\Attribute;
 use Ipunkt\LaravelJsonApiDoc\Services\Documentation\ResourceDocumentation;
 
@@ -24,7 +25,12 @@ class AttributeParser extends BaseParser
         ResourceDocumentation $resourceDocumentation
     )
     {
-        $classDocblock = $this->getSerializerDocBlock($resourceManager, $resourceName);
+        try {
+            $classDocblock = $this->getSerializerDocBlock($resourceManager, $resourceName);
+        } catch (ResourceNotDefinedException $exception)
+        {
+            return;
+        }
 
         $attributeLines = $this->docblockParser->findTags('attribute', $classDocblock);
 

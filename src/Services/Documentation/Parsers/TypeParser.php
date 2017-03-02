@@ -3,6 +3,7 @@
 namespace Ipunkt\LaravelJsonApiDoc\Services\Documentation\Parsers;
 
 use Ipunkt\LaravelJsonApi\Resources\ResourceManager;
+use Ipunkt\LaravelJsonApi\Resources\ResourceNotDefinedException;
 use Ipunkt\LaravelJsonApiDoc\Services\Documentation\ResourceDocumentation;
 
 class TypeParser extends BaseParser
@@ -23,7 +24,12 @@ class TypeParser extends BaseParser
         ResourceDocumentation $resourceDocumentation
     )
     {
-        $docBlock = $this->getSerializerDocBlock($resourceManager, $resourceName);
+        try {
+            $docBlock = $this->getSerializerDocBlock($resourceManager, $resourceName);
+        } catch (ResourceNotDefinedException $exception) {
+            return;
+        }
+
         $types = $this->docblockParser->findTags('type', $docBlock);
         $type = implode('', $types);
 
