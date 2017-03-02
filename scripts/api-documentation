@@ -1,0 +1,27 @@
+#!/bin/sh -eu
+
+#php artisan api-doc:generate
+
+STORAGE=storage/api
+script_dir=`pwd`
+container_dir=/docs
+
+uid=`id -u`
+gid=`id -g`
+
+if tty 2>&1 > /dev/null ; then
+        INTERACTIVE="-it"
+else
+        INTERACTIVE=""
+        echo "No terminal detected, running in non-interactive mode"
+fi
+
+docker run $INTERACTIVE --user "$uid:$gid" --rm -e XDEBUG_CONFIG -v $(pwd):/usr/src/myapp -w /usr/src/myapp ipunktbs/php:7.0 php artisan api-doc:generate
+
+for C in $STORAGE/blueprints/*
+do
+	NAME=$(basename $C .apbi)
+	TARGET="docs/$NAME.html"
+	echo "Erzeuge $TARGET aus $C"
+	docker run -u $uid:$gid --rm $INTERACTIVE -v $script_dir:$container_dir humangeo/aglio -i "$C" -o "$STORAGE/$TARGET" --theme-variables default --theme-template triple
+done
