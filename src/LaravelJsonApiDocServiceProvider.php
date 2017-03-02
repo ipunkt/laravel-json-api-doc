@@ -26,6 +26,10 @@ class LaravelJsonApiDocServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        if (config('json-api-documentation.register_command', false) === false) {
+            return;
+        }
+
         $this->commands(GenerateDocCommand::class);
     }
 }
