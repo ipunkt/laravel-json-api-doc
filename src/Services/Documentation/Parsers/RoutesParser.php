@@ -130,7 +130,11 @@ class RoutesParser extends BaseParser
         }
 
         $repository->applyCondition(new LimitCondition(1));
-        $item = $repository->get()->first();
+        $collection = $repository->get();
+        if ($collection->isEmpty()) {
+            throw new ResourceNotDefinedException();
+        }
+        $item = $collection->first();
         $response = new Document();
         $response->setData(new Resource($item, $serializer));
         $encodedResponse = json_encode($response->toArray(), JSON_PRETTY_PRINT);
