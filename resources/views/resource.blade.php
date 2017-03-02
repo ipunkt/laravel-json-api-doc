@@ -1,4 +1,4 @@
-# Group Ressource {{ $resource->getName() }}
+# Group Resource {{ $resource->getName() }}
 {!! $resource->getComment() !!}
 
 @unless($resource->itemRoutes()->isEmpty())
