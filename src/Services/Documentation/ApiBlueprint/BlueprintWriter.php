@@ -28,8 +28,10 @@ class BlueprintWriter
     public function write(string $text) : int
     {
         $versionName = $this->version;
-        $path = storage_path("api/blueprints/v$versionName.apbi");
+        $path = config('json-api-documentation.storage_path');
 
-        return \File::put($path, $text);
+        \File::makeDirectory($path, 0775, true);
+
+        return \File::put($path . DIRECTORY_SEPARATOR . "v$versionName.apbi", $text);
     }
 }
