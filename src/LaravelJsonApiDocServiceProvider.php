@@ -2,14 +2,18 @@
 
 namespace Ipunkt\LaravelJsonApiDoc;
 
+use Illuminate\Support\ServiceProvider;
 use Ipunkt\LaravelJsonApiDoc\Commands\GenerateDocCommand;
 
-class ServiceProvider extends \Illuminate\Support\ServiceProvider
+class LaravelJsonApiDocServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $configFile = realpath(__DIR__ . '/../config/api-documentation.php');
+
+        $this->mergeConfigFrom($configFile, 'json-api-doc');
         $this->publishes([
-            __DIR__ . '/../config/api-documentation.php' => config_path('api-documentation.php'),
+            $configFile => config_path('api-documentation.php'),
         ]);
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laravel-json-api-doc');
