@@ -9,11 +9,11 @@ class LaravelJsonApiDocServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $configFile = realpath(__DIR__ . '/../config/api-documentation.php');
+        $configFile = realpath(__DIR__ . '/../config/json-api-documentation.php');
 
-        $this->mergeConfigFrom($configFile, 'json-api-doc');
+        $this->mergeConfigFrom($configFile, 'json-api-documentation');
         $this->publishes([
-            $configFile => config_path('api-documentation.php'),
+            $configFile => config_path('json-api-documentation.php'),
         ]);
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laravel-json-api-doc');

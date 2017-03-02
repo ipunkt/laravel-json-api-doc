@@ -68,9 +68,9 @@ class GenerateDocCommand extends Command
         foreach ($versions as $versionName) {
 
             $formatter = new BlueprintDocumentationFormatter();
-            $formatter->setName(config('api-documentation.name'));
-            $formatter->setDescription(config('api-documentation.description'));
-            $formatter->setFormat(config('api-documentation.format'));
+            $formatter->setName(config('json-api-documentation.name'));
+            $formatter->setDescription(config('json-api-documentation.description'));
+            $formatter->setFormat(config('json-api-documentation.format'));
 
             $writer = new BlueprintWriter($versionName);
             $this->documentationService->buildFor($versionName, $this->resourceManager, $formatter, $writer);

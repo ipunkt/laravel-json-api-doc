@@ -9,7 +9,7 @@ class BlueprintDocumentationFormatter {
 
 	/**
 	 * Api name which will be written to the blueprint definition
-	 * defaults to config('api-documentation.name')
+	 * defaults to config('json-api-documentation.name')
 	 *
 	 * @var string
 	 */
@@ -17,7 +17,7 @@ class BlueprintDocumentationFormatter {
 
 	/**
 	 * Api description which will be written to the blueprint definition
-	 * defaults to config('api-documentation.description')
+	 * defaults to config('json-api-documentation.description')
 	 *
 	 * @var string
 	 */
