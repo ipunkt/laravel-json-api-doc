@@ -130,11 +130,7 @@ class RoutesParser extends BaseParser
         }
 
         $repository->applyCondition(new LimitCondition(1));
-        $collection = $repository->get();
-        if ($collection->isEmpty()) {
-            throw new ResourceNotDefinedException();
-        }
-        $item = $collection->first();
+        $item = $repository->get()->first();
         $response = new Document();
         $response->setData(new Resource($item, $serializer));
         $encodedResponse = json_encode($response->toArray(), JSON_PRETTY_PRINT);
@@ -207,7 +203,7 @@ class RoutesParser extends BaseParser
         $route = new Route('POST', route($routeName, [
             'version' => $version,
             'resource' => $resourceName,
-        ], false), 'Creating a resource of type ' . ucwords($resourceName));
+        ], false), 'Createing  ' . ucwords($resourceName));
         $route->setSecure($isSecure);
         if ($isSecure) {
             $route->addResponse(401, '');
@@ -239,7 +235,7 @@ class RoutesParser extends BaseParser
         $route = new Route('PATCH', route($routeName, [
                 'version' => $version,
                 'resource' => $resourceName,
-            ], false) . '/{id}', 'Updating a resource of type ' . ucwords($resourceName));
+            ], false) . '/{id}', 'Aktualisieren eines Elementes vom Typ ' . ucwords($resourceName));
         $route->setSecure($isSecure);
         if ($isSecure) {
             $route->addResponse(401, '');
@@ -271,7 +267,7 @@ class RoutesParser extends BaseParser
         $route = new Route('DELETE', route($routeName, [
                 'version' => $version,
                 'resource' => $resourceName,
-            ], false) . '/{id}', 'Deleting a resource of type ' . ucwords($resourceName));
+            ], false) . '/{id}', 'Löschen eines Elementes vom Typ ' . ucwords($resourceName));
         $route->setSecure($isSecure);
         if ($isSecure) {
             $route->addResponse(401, '');
