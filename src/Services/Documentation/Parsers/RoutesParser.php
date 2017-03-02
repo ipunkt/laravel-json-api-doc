@@ -122,7 +122,7 @@ class RoutesParser extends BaseParser
         $route = new Route('ITEM', route($routeName, [
                 'version' => $version,
                 'resource' => $resourceName,
-            ], false) . '/{id}', 'Fetching resource of type ' . ucwords($resourceName));
+            ], false) . '/{id}', 'Fetching resource of type ' . $resourceName);
 
         $route->setSecure($isSecure);
         if ($isSecure) {
@@ -165,7 +165,7 @@ class RoutesParser extends BaseParser
         $route = new Route('INDEX', route($routeName, [
             'version' => $version,
             'resource' => $resourceName,
-        ], false), 'Fetching a list of resources of type ' . ucwords($resourceName));
+        ], false), 'Fetching a list of resources of type ' . $resourceName);
         $route->setSecure($isSecure);
         if ($isSecure) {
             $route->addResponse(401, '');
@@ -203,7 +203,7 @@ class RoutesParser extends BaseParser
         $route = new Route('POST', route($routeName, [
             'version' => $version,
             'resource' => $resourceName,
-        ], false), 'Createing  ' . ucwords($resourceName));
+        ], false), 'Creating resource of type ' . $resourceName);
         $route->setSecure($isSecure);
         if ($isSecure) {
             $route->addResponse(401, '');
@@ -235,7 +235,7 @@ class RoutesParser extends BaseParser
         $route = new Route('PATCH', route($routeName, [
                 'version' => $version,
                 'resource' => $resourceName,
-            ], false) . '/{id}', 'Aktualisieren eines Elementes vom Typ ' . ucwords($resourceName));
+            ], false) . '/{id}', 'Updating a resource of type ' . $resourceName);
         $route->setSecure($isSecure);
         if ($isSecure) {
             $route->addResponse(401, '');
@@ -267,7 +267,7 @@ class RoutesParser extends BaseParser
         $route = new Route('DELETE', route($routeName, [
                 'version' => $version,
                 'resource' => $resourceName,
-            ], false) . '/{id}', 'Löschen eines Elementes vom Typ ' . ucwords($resourceName));
+            ], false) . '/{id}', 'Deleting a resource of type ' . $resourceName);
         $route->setSecure($isSecure);
         if ($isSecure) {
             $route->addResponse(401, '');
