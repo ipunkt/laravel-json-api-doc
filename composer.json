@@ -1,0 +1,21 @@
+{
+	"name": "ipunkt/laravel-json-api-doc",
+	"description": "parse an ipunkt/laravel-json-api based api definition and write a blueprint api documentation for it",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Sven Speckmaier",
+			"email": "sps@ipunkt.biz"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Ipunkt\\LaravelJsonApiDoc\\": "src/"
+		}
+	},
+	"require": {},
+	"bin": [
+		"scripts/api-documentation"
+	]
+}
