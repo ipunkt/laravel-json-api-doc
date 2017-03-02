@@ -2,6 +2,8 @@
 
 namespace Ipunkt\LaravelJsonApiDoc\Services\Documentation\ApiBlueprint;
 
+use File;
+
 class BlueprintWriter
 {
     /**
@@ -30,8 +32,10 @@ class BlueprintWriter
         $versionName = $this->version;
         $path = config('json-api-documentation.storage_path');
 
-        \File::makeDirectory($path, 0775, true);
+        if (!File::isDirectory($path)) {
+	        File::makeDirectory($path, 0775, true);
+        }
 
-        return \File::put($path . DIRECTORY_SEPARATOR . "v$versionName.apbi", $text);
+        return File::put($path . DIRECTORY_SEPARATOR . "v$versionName.apbi", $text);
     }
 }
