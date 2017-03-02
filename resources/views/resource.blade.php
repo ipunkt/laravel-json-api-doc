@@ -10,7 +10,7 @@ Existing calls:
 - Relation for <kbd>{{ $relation->getName() }}: {{ $relation->getComment() }}</kbd> <xmp>{{ $resource->itemRoutes()->first()->path() }}/relationships/{{ $relation->getName() }}</xmp>
 @endforeach
 @foreach ($resource->collectionRoutes() as $route)
-- Listing call: <xmp>{{ $route->path() }}</xmp>
+- Listing call: <xmp>{{ urldecode($route->path()) }}</xmp>
 @endforeach
 
 @foreach ($resource->itemRoutes() as $route)
