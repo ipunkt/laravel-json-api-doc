@@ -17,8 +17,8 @@
 	"require": {
 		"php": ">=7.0",
 		"laravel/framework": "^5.2",
-        "illuminate/support": "^5.2",
-		"ipunkt/laravel-json-api": "dev-master"
+		"illuminate/support": "^5.2",
+		"ipunkt/laravel-json-api": "^0.0.1"
 	},
 	"bin": [
 		"scripts/api-documentation"
